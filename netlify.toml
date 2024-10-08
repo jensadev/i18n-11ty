@@ -5,17 +5,27 @@
   publish = "dist"
   node_version = "20"
 
-# redirect to german, spanish or english landing pages
-
+# Redirect any URLs with the language code in them already
 [[redirects]]
-  from = "/"
-  to = "/sv"
-  status = 302
-  force= true
-
-[[redirects]]
-  from = "/"
-  to = "/en"
-  status = 302
+  from = "/sv/*"
+  to = "/:splat"
+  status = 301
   force = true
+
+# Important: Per shadowing rules, URLs for the
+# _non-default_ language-specific content files
+# are served without redirects.
+
+# Redirect for end-user’s browser preference override
+[[redirects]]
+  from = "/*"
+  to = "/en/:splat"
+  status = 302
   conditions = {Language = ["en"]}
+
+# Default
+[[redirects]]
+  from = "/*"
+  to = "/sv/:splat"
+  status = 200
+
