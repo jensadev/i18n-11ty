@@ -1,0 +1,21 @@
+# tell netlify about your build script and output directory
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  node_version = "20"
+
+# redirect to german, spanish or english landing pages
+
+[[redirects]]
+  from = "/"
+  to = "/sv"
+  status = 302
+  force= true
+
+[[redirects]]
+  from = "/"
+  to = "/en"
+  status = 302
+  force = true
+  conditions = {Language = ["en"]}
